@@ -1,0 +1,453 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Neutral Color Scale — High-Contrast White Minimalist */
+  --neutral-50: #000000;
+  --neutral-100: #141414;
+  --neutral-200: #262626;
+  --neutral-300: #525252;
+  --neutral-400: #737373;
+  --neutral-500: #a3a3a3;
+  --neutral-600: #d4d4d4;
+  --neutral-700: #e5e5e5;
+  --neutral-800: #f5f5f5;
+  --neutral-900: #fafafa;
+  --neutral-950: #ffffff;
+
+  /* Custom Color Tokens */
+  --color-brand-blue: #9CD2FF;
+  --color-brand-gray: #C5C5C5;
+  --color-brand-orange: #FF6831;
+
+  /* Semantic Design Tokens */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-subtle: #f1f3f5;
+  --color-bg-dark: #050505;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #141414;
+  --color-text-muted: #525252;
+  --color-text-caption: #737373;
+  --color-text-inverse: #ffffff;
+
+  --color-border: rgba(0, 0, 0, 0.15);
+  --color-border-strong: rgba(0, 0, 0, 0.35);
+
+  --color-link: #000000;
+  --color-link-hover: #333333;
+  --color-focus: #000000;
+
+  --color-cinema-gold: #c5a059;
+
+  /* Legacy / compatibility mappings */
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
+  --color-surface: var(--color-bg-secondary);
+  --color-surface-subtle: var(--color-bg-subtle);
+  --color-muted: var(--color-text-muted);
+  --color-muted-foreground: var(--color-text-secondary);
+
+  /* Typography */
+  --font-size-display-xl: clamp(3.25rem, 12.5vw, 14.5rem);
+  --line-height-display-xl: 0.86;
+  --letter-spacing-display-xl: -0.055em;
+
+  --font-size-display-lg: clamp(2.5rem, 6.5vw, 6.75rem);
+  --line-height-display-lg: 0.94;
+  --letter-spacing-display-lg: -0.04em;
+
+  --font-size-heading-xl: clamp(2rem, 4.5vw, 4.25rem);
+  --line-height-heading-xl: 1.02;
+  --letter-spacing-heading-xl: -0.03em;
+
+  --font-size-heading-lg: clamp(1.5rem, 3.2vw, 2.75rem);
+  --line-height-heading-lg: 1.12;
+  --letter-spacing-heading-lg: -0.025em;
+
+  --font-size-heading-md: clamp(1.25rem, 2.2vw, 1.85rem);
+  --line-height-heading-md: 1.25;
+  --letter-spacing-heading-md: -0.015em;
+
+  --font-size-body-lg: clamp(1.125rem, 1.5vw, 1.35rem);
+  --line-height-body-lg: 1.65;
+  --letter-spacing-body-lg: -0.01em;
+
+  --font-size-body-md: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  --line-height-body-md: 1.6;
+  --letter-spacing-body-md: -0.005em;
+
+  --font-size-body-sm: 0.875rem;
+  --line-height-body-sm: 1.55;
+  --letter-spacing-body-sm: 0;
+
+  --font-size-caption: 0.75rem;
+  --line-height-caption: 1.4;
+  --letter-spacing-caption: 0.05em;
+
+  --font-size-eyebrow: 0.6875rem;
+  --line-height-eyebrow: 1.2;
+  --letter-spacing-eyebrow: 0.28em;
+
+  /* Motion */
+  --duration-micro: 250ms;
+  --duration-element: 550ms;
+  --duration-title: 850ms;
+  --duration-transition: 800ms;
+
+  --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
+  --shadow-elevation: 0 16px 48px -12px rgba(0, 0, 0, 0.15);
+  --shadow-cinema: 0 24px 64px -16px rgba(0, 0, 0, 0.35);
+
+  --grain-opacity: 0.025;
+}
+
+/* Dark Cinema Atmosphere */
+.dark-cinema,
+[data-theme="dark"] {
+  --color-bg-primary: #050505;
+  --color-bg-secondary: #0a0a0a;
+  --color-bg-subtle: #141414;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #f5f5f5;
+  --color-text-muted: #a3a3a3;
+  --color-text-caption: #737373;
+  --color-text-inverse: #000000;
+
+  --color-border: rgba(255, 255, 255, 0.15);
+  --color-border-strong: rgba(255, 255, 255, 0.35);
+
+  --color-focus: #ffffff;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: auto;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    overflow-x: hidden;
+    position: relative;
+
+    font-feature-settings:
+      "cv02",
+      "cv03",
+      "cv04",
+      "cv11";
+  }
+
+  ::selection {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  /* Accessible focus */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+}
+
+/* ==========================================================================
+   VIEW TRANSITION API
+   ========================================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+/*
+  Root transition:
+  Keep the overall page change quicker than the shared project media.
+*/
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease-cinema);
+}
+
+/*
+  Use specific animation classes through view-transition-class
+  when supported, instead of forcing every named transition
+  to inherit the same 800ms duration.
+*/
+::view-transition-group(.project-media) {
+  animation-duration: 800ms;
+  animation-timing-function: var(--ease-cinema);
+}
+
+::view-transition-old(.project-media),
+::view-transition-new(.project-media) {
+  animation-duration: 800ms;
+  animation-timing-function: var(--ease-cinema);
+}
+
+::view-transition-group(.project-title) {
+  animation-duration: 600ms;
+  animation-timing-function: var(--ease-cinema);
+}
+
+::view-transition-old(.project-title),
+::view-transition-new(.project-title) {
+  animation-duration: 600ms;
+  animation-timing-function: var(--ease-cinema);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+/* ==========================================================================
+   FILM GRAIN
+   ========================================================================== */
+
+.film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain-opacity);
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   TYPOGRAPHY UTILITIES
+   ========================================================================== */
+
+.font-editorial {
+  font-family: var(--font-serif), Georgia, serif;
+  font-feature-settings: "dlig", "liga";
+}
+
+.text-fluid-hero {
+  font-size: var(--font-size-display-xl);
+  line-height: var(--line-height-display-xl);
+  letter-spacing: var(--letter-spacing-display-xl);
+}
+
+.text-fluid-title {
+  font-size: var(--font-size-display-lg);
+  line-height: var(--line-height-display-lg);
+  letter-spacing: var(--letter-spacing-display-lg);
+}
+
+.text-fluid-h2 {
+  font-size: var(--font-size-heading-xl);
+  line-height: var(--line-height-heading-xl);
+  letter-spacing: var(--letter-spacing-heading-xl);
+}
+
+.text-fluid-quote {
+  font-size: clamp(2.1rem, 5.4vw, 4.85rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.text-eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--font-size-eyebrow);
+  line-height: var(--line-height-eyebrow);
+  letter-spacing: var(--letter-spacing-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   MEDIA SCRIMS
+   ========================================================================== */
+
+.media-scrim {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.6) 35%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+}
+
+.media-scrim-top {
+  background:
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.6) 35%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+}
+
+/* ==========================================================================
+   PAUL KALKBRENNER TEMPLATE UTILITIES
+   ========================================================================== */
+
+.h-d {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(3.2rem, 11vw, 13rem);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.h-d__span {
+  display: inline-block;
+}
+
+.h-m {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: 1.05;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.p-l {
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.p-r {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.p-s {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono), monospace;
+}
+
+.u-text-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.square {
+  width: 7px;
+  height: 7px;
+  background-color: currentColor;
+  display: inline-block;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.section-top__start {
+  display: flex;
+  align-items: center;
+}
+
+.eq__wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+
+.eq__bar {
+  width: 2.5px;
+  background-color: currentColor;
+  border-radius: 1px;
+  animation: equalizer 1.2s infinite ease-in-out;
+}
+
+.eq__bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.eq__bar:nth-child(2) { height: 80%; animation-delay: 0.3s; }
+.eq__bar:nth-child(3) { height: 50%; animation-delay: 0.15s; }
+.eq__bar:nth-child(4) { height: 100%; animation-delay: 0.45s; }
+.eq__bar:nth-child(5) { height: 60%; animation-delay: 0.25s; }
+.eq__bar:nth-child(6) { height: 90%; animation-delay: 0.35s; }
+.eq__bar:nth-child(7) { height: 35%; animation-delay: 0.05s; }
+
+.u-color-dark-40 {
+  opacity: 0.55;
+}
+
+@keyframes equalizer {
+  0%, 100% {
+    height: 25%;
+  }
+  50% {
+    height: 100%;
+  }
+}
